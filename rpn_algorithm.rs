@@ -23,9 +23,9 @@ fn main() {
         // Divide la stringa per spazi bianchi
 
         match token {
-            "+" | "-" | "*" | "/" => {
+            "+" | "-" | "*" | "/" | "^" => {
                 while let Some(op) = stack.last() { // Scorre stack dall'ultimo elemento finché non è None
-                    if precedence(op) >= precedence(token) { // Se l'operatore già in stack ha precedenza uguale o più alta di token lo si sposta in output. Token si mette in ogni caso nello stack
+                    if precedence(op) >= precedence(token) && token != "^" { // Se l'operatore già in stack ha precedenza uguale o più alta di token lo si sposta in output. Token si mette in ogni caso nello stack
                         output.push(stack.pop().unwrap().to_string());
                     } else {
                         break;
@@ -60,6 +60,8 @@ fn main() {
         }
     }
     
-
+    while let Some(op) = stack.pop() {
+        output.push(op)
+    }
 
 }
