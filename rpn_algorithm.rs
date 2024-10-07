@@ -64,4 +64,8 @@ fn main() {
         output.push(op)
     }
 
+    for el in output {
+        println!("{}", el)
+    }
+
 }
